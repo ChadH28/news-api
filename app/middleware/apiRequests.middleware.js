@@ -2,8 +2,8 @@
 // - REACT_APP_URL_LINK = "https://newsapi.org"
 const axios = require('axios')
 const dotenv =  require('dotenv');
-const key = process.env.API_KEY;
 dotenv.config();
+const key = process.env.API_KEY;
 
 
 // getting all users for admin
@@ -16,8 +16,7 @@ getHeadLines = async (req, res, next) => {
       `apiKey=${key}`;
     console.log(url)
     const news_get = await axios.get(url)
-    console.log(news_get)
-    newsHeadLine = res.json('news', { articles: news_get.data.articles })
+    newsHeadLine = res.json(news_get.data.articles)
   } catch (error) {
     if (error.response) {
       console.log(error)
@@ -37,7 +36,7 @@ getScience = async (req, res, next) => {
       `apiKey=${key}`;
 
     const news_get = await axios.get(url)
-    newsScience = res.json('news', { articles: news_get.data.articles })
+    newsScience = res.json(news_get.data.articles)
   } catch (error) {
     if (error.response) {
       console.log(error)
@@ -57,7 +56,7 @@ getTech = async (req, res, next) => {
       `apiKey=${key}`;
 
     const news_get = await axios.get(url)
-    newsTech = res.json('news', { articles: news_get.data.articles })
+    newsTech = res.json(news_get.data.articles)
   } catch (error) {
     if (error.response) {
       console.log(error)
@@ -70,11 +69,11 @@ getTech = async (req, res, next) => {
 // posting a search query
 postQuery = async (req, res, next) => {
   const search = req.body.search
-  // console.log(search)
+  console.log(search)
   try {
     var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=${key}`
     const news_get = await axios.get(url)
-    queriedSearch = res.json('news', { articles: news_get.data.articles })
+    queriedSearch = res.json(news_get.data.articles)
   } catch (error) {
     if (error.response) {
       console.log(error)
