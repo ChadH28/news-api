@@ -1,3 +1,5 @@
+// - REACT_APP_API_KEY = "a5ed448a48fc49a7b60007499047e63a"
+// - REACT_APP_URL_LINK = "https://newsapi.org"
 const axios = require('axios')
 
 // getting all users for admin
