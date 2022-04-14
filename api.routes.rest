@@ -15,9 +15,6 @@ GET http://localhost:4000/news/technology
 GET http://localhost:4000/news/science
 
 
-### getting news headlines
-GET http://localhost:4000/news/top-headlines
-
 ### Posting or adding a product
 POST http://localhost:4000/news/search
 Content-Type: application/json

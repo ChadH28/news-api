@@ -1,6 +1,10 @@
 // - REACT_APP_API_KEY = "a5ed448a48fc49a7b60007499047e63a"
 // - REACT_APP_URL_LINK = "https://newsapi.org"
 const axios = require('axios')
+const dotenv =  require('dotenv');
+const key = process.env.API_KEY;
+dotenv.config();
+
 
 // getting all users for admin
 getHeadLines = async (req, res, next) => {
@@ -9,9 +13,10 @@ getHeadLines = async (req, res, next) => {
       'category=general&' +
       'country=za&' +
       'pageSize=10&' +
-      'apiKey=a5ed448a48fc49a7b60007499047e63a';
-
+      `apiKey=${key}`;
+    console.log(url)
     const news_get = await axios.get(url)
+    console.log(news_get)
     newsHeadLine = res.json('news', { articles: news_get.data.articles })
   } catch (error) {
     if (error.response) {
@@ -29,7 +34,7 @@ getScience = async (req, res, next) => {
       'category=science&' +
       'country=za&' +
       'pageSize=10&' +
-      'apiKey={YOUR_API}';
+      `apiKey=${key}`;
 
     const news_get = await axios.get(url)
     newsScience = res.json('news', { articles: news_get.data.articles })
@@ -49,7 +54,7 @@ getTech = async (req, res, next) => {
       'category=technology&' +
       'country=za&' +
       'pageSize=10&' +
-      'apiKey={YOUR_API}';
+      `apiKey=${key}`;
 
     const news_get = await axios.get(url)
     newsTech = res.json('news', { articles: news_get.data.articles })
@@ -61,12 +66,13 @@ getTech = async (req, res, next) => {
   next();
 };
 
+
 // posting a search query
 postQuery = async (req, res, next) => {
   const search = req.body.search
-  // console.log(req.body.search)
+  // console.log(search)
   try {
-    var url = `http://newsapi.org/v2/everything?q=${search}&apiKey={YOUR_API}`
+    var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=${key}`
     const news_get = await axios.get(url)
     queriedSearch = res.json('news', { articles: news_get.data.articles })
   } catch (error) {
@@ -76,3 +82,12 @@ postQuery = async (req, res, next) => {
   }
   next();
 };
+
+const apiRequests = {
+  getHeadLines,
+  getScience,
+  getTech,
+  postQuery
+};
+
+module.exports = apiRequests;
