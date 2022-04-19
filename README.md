@@ -10,6 +10,7 @@
 - install Nodemon as dev dependency: `npm i nodemon -D` 
 - create `.env` file and add key below:
   - `API_KEY = "a5ed448a48fc49a7b60007499047e63a"`
+  - `PORT = 4000`
 
 ### Run app
 - Run nodejs app: `npm start`
